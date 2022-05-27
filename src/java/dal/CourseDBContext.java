@@ -8,10 +8,12 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
 import model.Course;
+import model.PricePackage;
 import model.Status;
 
 /**
@@ -30,6 +32,7 @@ public class CourseDBContext extends DBContext {
                 + "      ,[featured]\n"
                 + "      ,[Categoryid]\n"
                 + "      ,[statusid]\n"
+                +",[tagline]"
                 + "  FROM [Courses] c\n"
                 + "  where c.CourseId = ?";
         try {
@@ -40,7 +43,7 @@ public class CourseDBContext extends DBContext {
             rs = stm.executeQuery();
             if (rs.next()) {
                 Course Course = new Course();
-                Course.setCourseId((Integer) rs.getInt("CourseId"));
+                Course.setCourseId(id);
                 Course.setCreatedate(rs.getDate("createdate"));
                 Course.setShortdecription(rs.getString("shortdecription"));
                 Course.setThumnailURL(rs.getString("thumnaiURL"));

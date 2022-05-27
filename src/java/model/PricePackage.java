@@ -11,7 +11,6 @@ package model;
  */
 public class PricePackage implements java.io.Serializable{
     private int id;
-    private String discount;
     private int duration;
     private float listPrice;
     private String name;
@@ -27,14 +26,6 @@ public class PricePackage implements java.io.Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
     }
 
     public int getDuration() {

@@ -12,7 +12,8 @@ import java.util.ArrayList;
  *
  * @author thand
  */
-public class Course implements java.io.Serializable{
+public class Course implements java.io.Serializable {
+
     private int courseId;
     private Date createdate;
     private String shortdecription;
@@ -32,6 +33,14 @@ public class Course implements java.io.Serializable{
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
+    }
+
+    public ArrayList<PricePackage> getPrices() {
+        return Prices;
+    }
+
+    public void setPrices(ArrayList<PricePackage> Prices) {
+        this.Prices = Prices;
     }
 
     public Date getCreatedate() {
@@ -89,6 +98,5 @@ public class Course implements java.io.Serializable{
     public void setStatus(Status status) {
         this.status = status;
     }
-    
-    
+
 }

@@ -7,6 +7,7 @@ package controller;
 
 import dal.CategoryDBContext;
 import dal.CourseDBContext;
+import dal.PricePackageDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Course;
+import model.PricePackage;
 
 /**
  *
@@ -22,31 +24,32 @@ import model.Course;
  */
 public class CourseDetailController extends HttpServlet {
 
- 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = "1";
         id = request.getParameter("id");
-        int a =1;
-        if( id!=null && !id.isEmpty() ){
+        int a = 1;
+        if (id != null && !id.isEmpty()) {
             a = Integer.parseInt(id);
         }
         CourseDBContext cdb = new CourseDBContext();
         Course Course = cdb.getCourse(a);
         CategoryDBContext CDB = new CategoryDBContext();
-        ArrayList<Category>  Categorys =CDB.getCategorys();
+        ArrayList<Category> Categorys = CDB.getCategorys();
+        PricePackageDBContext ppdbc = new PricePackageDBContext();
+        ArrayList<PricePackage> PricePackes = ppdbc.PricePackes(a);
+         request.setAttribute("PricePackes", PricePackes);
         request.setAttribute("Categorys", Categorys);
         request.setAttribute("Course", Course);
-        request.setAttribute("now", java.time.LocalDate.now()); 
+        request.setAttribute("now", java.time.LocalDate.now());
         request.getRequestDispatcher("../view/courseDetail.jsp").forward(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
 }

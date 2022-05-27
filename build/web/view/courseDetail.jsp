@@ -78,13 +78,20 @@
                 </div>
             </div>
             <div class="col-lg-3 col-sm-12  " id="featuredsubjects">
-                <div class="course-price text-center">
-                    original price <del>$190</del>
-                    <h4 class="price"> sale price $120</h4>
-                </div>
+                <div class="course-price text-center"><br><br>
+                    original price <del>$${requestScope.PricePackes.get(0).listPrice} </del>
+                    <h4 class="price"> $${requestScope.PricePackes.get(0).salePrice} 
+                        per month</h4><br><br>
+                    <h6>When you subscribe you'll get access to:</h6>
+                    <br>
+                    <h7>Practice material,graded assignments, discussion forums and more.
+                        Certificates to share on your resume, Linkedin, or CV. 
+                        24/7 customer support 
+                        and Easy cancellation</h7>
+                </div><br>
                 <div class="course-buy-now text-center">
                     <input type="button" value="Register This Courses">
-                    <p>Start ${requestScope.now}</p>    
+                    <p><br>Start ${requestScope.now}</p>    
                 </div>
             </div>
         </div>
