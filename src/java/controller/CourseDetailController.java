@@ -30,6 +30,7 @@ public class CourseDetailController extends HttpServlet {
         if( id!=null && !id.isEmpty() ){
             a = Integer.parseInt(id);
         }
+        //adadajn
         CourseDBContext cdb = new CourseDBContext();
         Course Course = cdb.getCourse(a);
         request.setAttribute("Course", Course);
