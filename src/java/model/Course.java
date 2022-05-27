@@ -16,7 +16,7 @@ public class Course implements java.io.Serializable {
 
     private int courseId;
     private Date createdate;
-    private String shortdecription;
+    private String briefinfo;
     private String thumnailURL;
     private String title;
     private boolean feature;
@@ -51,13 +51,15 @@ public class Course implements java.io.Serializable {
         this.createdate = createdate;
     }
 
-    public String getShortdecription() {
-        return shortdecription;
+    public String getBriefinfo() {
+        return briefinfo;
     }
 
-    public void setShortdecription(String shortdecription) {
-        this.shortdecription = shortdecription;
+    public void setBriefinfo(String briefinfo) {
+        this.briefinfo = briefinfo;
     }
+
+
 
     public String getThumnailURL() {
         return thumnailURL;

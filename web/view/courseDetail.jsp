@@ -73,7 +73,7 @@
                     <p>
 
                     <h4> About this Specialization</h4>
-                    ${requestScope.Course.shortdecription}
+                    ${requestScope.Course.briefinfo}
                     </p>
                 </div>
             </div>
@@ -95,6 +95,18 @@
                 </div>
             </div>
         </div>
+        <div class="row text-center topic">
+            
+            <c:forEach items="${requestScope.Topics}" var="t">
+                <div class="description">
+                    
+                </div>
+                <div class="description">
+                    <h6>${t.description}</h6>
+                </div>
+            </c:forEach>
+        </div>
+
 
         <h1 class="text-center content-detail">featured subjects</h1> 
         <div class="row ">
@@ -144,6 +156,8 @@
                 </div>
             </div>
         </div>
+
+
         <!-- footer side -->
         <jsp:include page="../view/base/footer.jsp" />    
     </body>

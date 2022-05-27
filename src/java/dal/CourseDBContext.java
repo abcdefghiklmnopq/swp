@@ -26,7 +26,7 @@ public class CourseDBContext extends DBContext {
         ResultSet rs = null;
         String sql = "SELECT [CourseId]\n"
                 + "      ,[createdate]\n"
-                + "      ,[shortdecription]\n"
+                + "      ,[briefinfo]\n"
                 + "      ,[thumnaiURL]\n"
                 + "      ,[title]\n"
                 + "      ,[featured]\n"
@@ -45,7 +45,7 @@ public class CourseDBContext extends DBContext {
                 Course Course = new Course();
                 Course.setCourseId(id);
                 Course.setCreatedate(rs.getDate("createdate"));
-                Course.setShortdecription(rs.getString("shortdecription"));
+                Course.setBriefinfo(rs.getString("briefinfo"));
                 Course.setThumnailURL(rs.getString("thumnaiURL"));
                 Course.setTitle(rs.getString("title"));
                 Course.setFeature(rs.getBoolean("featured"));
