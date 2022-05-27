@@ -6,6 +6,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Course implements java.io.Serializable{
     private boolean feature;
     private Category category;
     private Status status;
+    private ArrayList<PricePackage> Prices;
 
     public Course() {
     }

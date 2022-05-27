@@ -22,6 +22,7 @@
             }
         </Style>
         <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+        <link href="../css/courseDetail.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -33,20 +34,12 @@
         <div class="row text-center content-detail">
             <div class="col-lg-2 col-sm-12">
                 <h4 style="text-align: center; margin: 5%;">All Subject Category</h4>
-                <div class="subject">
-                    <a href="#">Software Engineering</a>
-                </div>
-                <div class="subject">
-                    <a href="#">Digital Marketing</a>
-                </div>
-                <div class="subject">
-                    <a href="#">Business</a>
-                </div>
-                <div class="subject">
-                    <a href="#">Your Life</a>
-                </div>
-                <div class="subject">
-                    <a href="#">Math</a>
+                <div class="Categorys">
+                    <c:forEach items="${requestScope.Categorys}" var="Category">
+                        <div class="subject">
+                            <a href="#">${Category.value}</a>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-lg-7 col-sm-12">

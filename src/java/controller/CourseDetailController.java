@@ -5,13 +5,15 @@
  */
 package controller;
 
+import dal.CategoryDBContext;
 import dal.CourseDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Course;
 
 /**
@@ -30,9 +32,11 @@ public class CourseDetailController extends HttpServlet {
         if( id!=null && !id.isEmpty() ){
             a = Integer.parseInt(id);
         }
-        //adadajn
         CourseDBContext cdb = new CourseDBContext();
         Course Course = cdb.getCourse(a);
+        CategoryDBContext CDB = new CategoryDBContext();
+        ArrayList<Category>  Categorys =CDB.getCategorys();
+        request.setAttribute("Categorys", Categorys);
         request.setAttribute("Course", Course);
         request.setAttribute("now", java.time.LocalDate.now()); 
         request.getRequestDispatcher("../view/courseDetail.jsp").forward(request, response);
