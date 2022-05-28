@@ -20,7 +20,6 @@
 
         <!-- Header side -->
         <jsp:include page="../view/base/header.jsp" /> 
-        <!-- Slider side -->
         <div class="body">
             <!--Content course detail-->
             <div class="row text-center content-detail">

@@ -32,6 +32,10 @@
         <servlet-name>UserRegisterController</servlet-name>
         <servlet-class>controller.UserRegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyCourse</servlet-name>
+        <servlet-class>controller.MyCourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>UserRegisterController</servlet-name>
         <url-pattern>/user/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyCourse</servlet-name>
+        <url-pattern>/MyCourse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
