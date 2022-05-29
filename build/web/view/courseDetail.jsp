@@ -59,10 +59,11 @@
                     </a>
                     <div class="ttr-post-title ">
                         <h1 class="post-title">${requestScope.Course.title}</h1>
+                        
                     </div>
                     <div>
                         <p>
-
+                            <h5>${requestScope.Course.tagline}</h5>
                         <h4> About this Specialization</h4>
                         ${requestScope.Course.briefinfo}
                         </p>

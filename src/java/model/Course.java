@@ -19,12 +19,22 @@ public class Course implements java.io.Serializable {
     private String briefinfo;
     private String thumnailURL;
     private String title;
+    private String tagline;
     private boolean feature;
     private Category category;
     private Status status;
+    
     private ArrayList<PricePackage> Prices;
 
     public Course() {
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 
     public int getCourseId() {

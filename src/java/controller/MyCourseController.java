@@ -5,12 +5,16 @@
  */
 package controller;
 
+import dal.CourseDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
+import model.User;
 
 /**
  *
@@ -56,7 +60,16 @@ public class MyCourseController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        CourseDBContext cdbc = new CourseDBContext();
+        User u = (User) request.getSession().getAttribute("user");
+        int pagesize =8;
+        String page = request.getParameter("page");
+        if(page == null || page.trim().length()==0){
+            page = "1";
+        }
+        int pageindex = Integer.parseInt(page);
+        ArrayList<Course> Courses = cdbc.getMyCourse(1,pageindex,pagesize);
+        request.setAttribute("Courses", Courses);
         request.getRequestDispatcher("view/mycourse.jsp").forward(request, response);
     }
 

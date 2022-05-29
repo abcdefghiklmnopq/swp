@@ -36,7 +36,7 @@ public class CourseDetailController extends HttpServlet {
             a = Integer.parseInt(id);
         }
         CourseDBContext cdb = new CourseDBContext();
-        Course Course = cdb.getCourse(a);
+        Course Course = cdb.getCourseDetail(a);
         CategoryDBContext CDB = new CategoryDBContext();
         ArrayList<Category> Categorys = CDB.getCategorys();
         PricePackageDBContext ppdbc = new PricePackageDBContext();
