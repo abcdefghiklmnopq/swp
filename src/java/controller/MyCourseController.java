@@ -68,8 +68,12 @@ public class MyCourseController extends HttpServlet {
             page = "1";
         }
         int pageindex = Integer.parseInt(page);
+        int count = cdbc.count(1);
+        int totalpage = (count%pagesize==0)?(count/pagesize):(count / pagesize)+1;
         ArrayList<Course> Courses = cdbc.getMyCourse(1,pageindex,pagesize);
         request.setAttribute("Courses", Courses);
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
         request.getRequestDispatcher("view/mycourse.jsp").forward(request, response);
     }
 

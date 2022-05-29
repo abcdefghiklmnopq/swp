@@ -17,7 +17,7 @@
         <script src="https://kit.fontawesome.com/98df298cac.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/98df298cac.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/home.css"/>
-
+        <script src="js/pager.js" type="text/javascript"></script>
 
         <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     </head>
@@ -29,33 +29,41 @@
             <c:forEach var = "j" begin = "1" end = "${requestScope.Courses.size()}">
                 <c:if test = "${ j % 4 == 1}">
                     <div class="row">
-                </c:if> 
-                        
+                    </c:if> 
+
                     <div class="cards col-md-3 col-xs-6">
                         <div class="course-card">
-                            <div class="card-infor"><a href="#">
-                                <div class="card-img">
-                                    <img src="images/courses/anh_course_temp.jpg" alt="">
-                                </div>
-                                <div class="card-title">
-                                    <h4>${requestScope.Courses.get(j-1).title}</h4>
-                                </div>
-                                <p class="card-subject">${requestScope.Courses.get(j-1).tagline}</p>
+                            <div class="card-infor">
                                 
-                                <p class="card-price">$99</p>
-                                </a>
+                                
+                                    <div class="card-img">
+                                        <img src="images/courses/anh_course_temp.jpg" alt="">
+                                    </div>
+                                    <div class="card-title" style="height:  90px;">
+                                        <a href="#"><h4>${requestScope.Courses.get(j-1).title}</h4></a>
+                                    </div>
+                                    <div class="tagline" style="height: 100px;">
+                                        <p class="card-subject">${requestScope.Courses.get(j-1).tagline}</p>
+                                    </div>
+                                <div class="progress" ">
+                                    <div class="progress-bar" style="width: 80%">80%</div>
+                                </div> 
                             </div>
+
                         </div>
+
                     </div>
                     <c:set var = "i" scope = "request" value = "${j+1}"/>
-                <c:if test = "${ i % 4 == 1}">
+                    <c:if test = "${ i % 4 == 1}">
                     </div>
                 </c:if> 
             </c:forEach>
 
         </div>
-
-        
+        <div id="paggerbot"> </div>
+        <script>
+        pagger("paggerbot",${requestScope.pageindex},${requestScope.totalpage}, 8);
+        </script>
     </body>
     <jsp:include page="../view/base/footer.jsp" />  
 </html>

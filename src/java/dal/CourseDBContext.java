@@ -143,8 +143,38 @@ public class CourseDBContext extends DBContext {
         return null;
     }
 
+    public int count(int Userid) {
+        try {
+            String sql = "	SELECT COUNT(*) as Total FROM(\n"
+                    + "	select * from\n"
+                    + "	(select c.CourseId,\n"
+                    + "              		c.title,\n"
+                    + "                	c.briefinfo,\n"
+                    + "                	c.createdate,\n"
+                    + "                	c.Categoryid,\n"
+                    + "                	c.featured,\n"
+                    + "                	c.statusid,\n"
+                    + "                	c.tagline,\n"
+                    + "                	c.thumnaiURL,\n"
+                    + "					u.Userid,\n"
+                    + "					ROW_NUMBER() over (order by c.CourseId asc ) as row_index\n"
+                    + "                	from \n"
+                    + "                [User] u inner join User_Course uc on u.Userid=uc.Userid\n"
+                    + "                		inner join Courses c on uc.Courseid = c.CourseId) u)a\n"
+                    + "               where a.Userid = ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, Userid);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         CourseDBContext cdbc = new CourseDBContext();
-        System.out.println(cdbc.getMyCourse(1,1,8).get(7).getCourseId());
+        System.out.println(cdbc.count(1));
     }
 }
