@@ -37,7 +37,7 @@
                                 
                                 
                                     <div class="card-img">
-                                        <img src="images/courses/anh_course_temp.jpg" alt="">
+                                        <img src="images/courses/${requestScope.Courses.get(j-1).thumnailURL}" alt="">
                                     </div>
                                     <div class="card-title" style="height:  90px;">
                                         <a href="#"><h4>${requestScope.Courses.get(j-1).title}</h4></a>

@@ -18,7 +18,7 @@ public class User {
     private String phone; 
     private String avatarImage; 
     private Status status; 
-
+    
     public User() {
     }
 

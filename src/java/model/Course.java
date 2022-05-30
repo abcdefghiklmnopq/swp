@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Course implements java.io.Serializable {
 
     private int courseId;
-    private Date createdate;
-    private String briefinfo;
+    private Date createDate;
+    private String briefInfo;
     private String thumnailURL;
     private String title;
     private String tagline;
@@ -54,19 +54,19 @@ public class Course implements java.io.Serializable {
     }
 
     public Date getCreatedate() {
-        return createdate;
+        return createDate;
     }
 
     public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+        this.createDate = createdate;
     }
 
     public String getBriefinfo() {
-        return briefinfo;
+        return briefInfo;
     }
 
     public void setBriefinfo(String briefinfo) {
-        this.briefinfo = briefinfo;
+        this.briefInfo = briefinfo;
     }
 
 

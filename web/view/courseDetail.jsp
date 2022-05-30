@@ -36,7 +36,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <a href="#">
                         <div >
-                            <img class="img " src="../images/courses/anh_course_temp.jpg" alt="First slide">
+                            <img class="img " src="../images/courses/${requestScope.Course.thumnailURL}" alt="First slide">
                         </div>
                     </a>
                     <div class="ttr-post-title ">

@@ -10,8 +10,8 @@ package model;
  * @author thand
  */
 public class Topic {
-    private int Id;
-    private int TopicOrder;
+    private int id;
+    private int topicOrder;
     private String TopicName;
     private String description;
 
@@ -19,19 +19,19 @@ public class Topic {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public int getTopicOrder() {
-        return TopicOrder;
+        return topicOrder;
     }
 
     public void setTopicOrder(int TopicOrder) {
-        this.TopicOrder = TopicOrder;
+        this.topicOrder = TopicOrder;
     }
 
     public String getTopicName() {

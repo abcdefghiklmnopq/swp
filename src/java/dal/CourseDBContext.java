@@ -218,6 +218,11 @@ public class CourseDBContext extends DBContext {
         }
         return 0;
     }
+    
+    public ArrayList<Course> getCoursesRegistraion(){
+        
+        return null;
+    }
 
     public static void main(String[] args) {
         CourseDBContext cdbc = new CourseDBContext();
