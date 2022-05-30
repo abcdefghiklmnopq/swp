@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
 import model.Course;
-import model.PricePackage;
 import model.Status;
 
 /**
@@ -144,6 +143,8 @@ public class CourseDBContext extends DBContext {
     }
 
     public int count(int Userid) {
+        PreparedStatement stm=null;
+        ResultSet rs =null;
         try {
             String sql = "	SELECT COUNT(*) as Total FROM(\n"
                     + "	select * from\n"
@@ -162,19 +163,63 @@ public class CourseDBContext extends DBContext {
                     + "                [User] u inner join User_Course uc on u.Userid=uc.Userid\n"
                     + "                		inner join Courses c on uc.Courseid = c.CourseId) u)a\n"
                     + "               where a.Userid = ? ";
-            PreparedStatement stm = connection.prepareStatement(sql);
+             stm = connection.prepareStatement(sql);
             stm.setInt(1, Userid);
-            ResultSet rs = stm.executeQuery();
+             rs = stm.executeQuery();
             if (rs.next()) {
                 return rs.getInt("Total");
             }
         } catch (SQLException ex) {
+        }finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+            }
         }
         return -1;
+    }
+    public int getCourseRate(int courseId, int userId){
+            PreparedStatement stm = null;
+        ResultSet rs = null;
+        String sql = "EXEC getRatecourse  @UserId = ?, @CourseId= ?;";
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, userId);
+            stm.setInt(2, courseId);
+            stm.executeQuery();
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                return  rs.getInt("ratecourse");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return 0;
     }
 
     public static void main(String[] args) {
         CourseDBContext cdbc = new CourseDBContext();
-        System.out.println(cdbc.count(1));
+        System.out.println(cdbc.getCourseRate(1, 1));
     }
 }

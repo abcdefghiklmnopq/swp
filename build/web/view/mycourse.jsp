@@ -45,8 +45,18 @@
                                     <div class="tagline" style="height: 100px;">
                                         <p class="card-subject">${requestScope.Courses.get(j-1).tagline}</p>
                                     </div>
-                                <div class="progress" ">
-                                    <div class="progress-bar" style="width: 80%">80%</div>
+                                    <div class="progress" >
+                                        <c:if test="${requestScope.courserates.get(j-1)==0 }">
+                                        <span style="margin-top: 8px; font-size: 20px">Start</span> 
+                                     </c:if>
+                                    <div class="progress-bar" style="width: ${requestScope.courserates.get(j-1)}% ">
+                                        
+                                        <c:if test="${requestScope.courserates.get(j-1)>0 }">
+                                            ${requestScope.courserates.get(j-1)}%
+                                        </c:if>
+                                        
+                                    </div>
+                                    
                                 </div> 
                             </div>
 
@@ -54,7 +64,7 @@
 
                     </div>
                     <c:set var = "i" scope = "request" value = "${j+1}"/>
-                    <c:if test = "${ i % 4 == 1}">
+                <c:if test = "${ i % 4 == 1}">
                     </div>
                 </c:if> 
             </c:forEach>

@@ -60,7 +60,7 @@ public class MyCourseController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CourseDBContext cdbc = new CourseDBContext();
+        CourseDBContext cdbc1 = new CourseDBContext();
         User u = (User) request.getSession().getAttribute("user");
         int pagesize =8;
         String page = request.getParameter("page");
@@ -68,9 +68,19 @@ public class MyCourseController extends HttpServlet {
             page = "1";
         }
         int pageindex = Integer.parseInt(page);
-        int count = cdbc.count(1);
+        int count = cdbc1.count(1);
         int totalpage = (count%pagesize==0)?(count/pagesize):(count / pagesize)+1;
-        ArrayList<Course> Courses = cdbc.getMyCourse(1,pageindex,pagesize);
+        CourseDBContext cdbc2 = new CourseDBContext();
+        ArrayList<Course> Courses = cdbc2.getMyCourse(1,pageindex,pagesize);
+        ArrayList<Integer> courserates = new ArrayList();
+        for (int i=0 ; i< Courses.size(); i++) {
+            CourseDBContext cdbc3 = new CourseDBContext();
+            int courserate = cdbc3.getCourseRate(Courses.get(i).getCourseId(), 1);
+            courserates.add(courserate);
+        }
+        System.out.println(courserates.get(2));
+
+        request.setAttribute("courserates", courserates);
         request.setAttribute("Courses", Courses);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("totalpage", totalpage);
