@@ -12,6 +12,8 @@
         <title>JSP Page</title>
         <style>
             footer{
+                bottom: 0;
+                width: 100%;
                 padding-left: 1%;
                 padding-right: 1%;
                 background-color: black;

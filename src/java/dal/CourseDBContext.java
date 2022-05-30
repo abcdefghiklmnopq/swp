@@ -89,12 +89,12 @@ public class CourseDBContext extends DBContext {
                 + "     c.statusid,\n"
                 + "     c.tagline,\n"
                 + "     c.thumnaiURL,\n"
-                + "	u.Userid,\n"
+                + "	u.Userid,uc.registration_status,\n"
                 + "	ROW_NUMBER() over (order by c.CourseId asc ) as row_index\n"
                 + "     from \n"
                 + "     [User] u inner join User_Course uc on u.Userid=uc.Userid\n"
                 + "              inner join Courses c on uc.Courseid = c.CourseId) u\n"
-                + "     where u.Userid = ? \n"
+                + "     where u.Userid = ? and u.registration_status='true' \n"
                 + "		and row_index >= (?-1)*?+1 and row_index<= ?*?";
         try {
             stm = connection.prepareStatement(sql);
@@ -146,23 +146,24 @@ public class CourseDBContext extends DBContext {
         PreparedStatement stm=null;
         ResultSet rs =null;
         try {
-            String sql = "	SELECT COUNT(*) as Total FROM(\n"
-                    + "	select * from\n"
-                    + "	(select c.CourseId,\n"
-                    + "              		c.title,\n"
-                    + "                	c.briefinfo,\n"
-                    + "                	c.createdate,\n"
-                    + "                	c.Categoryid,\n"
-                    + "                	c.featured,\n"
-                    + "                	c.statusid,\n"
-                    + "                	c.tagline,\n"
-                    + "                	c.thumnaiURL,\n"
-                    + "					u.Userid,\n"
-                    + "					ROW_NUMBER() over (order by c.CourseId asc ) as row_index\n"
-                    + "                	from \n"
-                    + "                [User] u inner join User_Course uc on u.Userid=uc.Userid\n"
-                    + "                		inner join Courses c on uc.Courseid = c.CourseId) u)a\n"
-                    + "               where a.Userid = ? ";
+            String sql = "SELECT COUNT(*) as Total FROM(\n" +
+"                    	select * from\n" +
+"                   	(select c.CourseId,\n" +
+"                               c.title,\n" +
+"                               c.briefinfo,\n" +
+"                               c.createdate,\n" +
+"                                c.Categoryid,\n" +
+"                               c.featured,\n" +
+"                               c.statusid,\n" +
+"                               c.tagline,\n" +
+"                               c.thumnaiURL,\n" +
+"                   			   u.Userid,\n" +
+"							   uc.registration_status,\n" +
+"                    				ROW_NUMBER() over (order by c.CourseId asc ) as row_index\n" +
+"                                   	from \n" +
+"                                  [User] u inner join User_Course uc on u.Userid=uc.Userid\n" +
+"                                    		inner join Courses c on uc.Courseid = c.CourseId) u)a\n" +
+"                                where a.Userid =  ? and a.registration_status ='true'";
              stm = connection.prepareStatement(sql);
             stm.setInt(1, Userid);
              rs = stm.executeQuery();
@@ -220,6 +221,6 @@ public class CourseDBContext extends DBContext {
 
     public static void main(String[] args) {
         CourseDBContext cdbc = new CourseDBContext();
-        System.out.println(cdbc.getCourseRate(1, 1));
+        System.out.println(cdbc.getMyCourse(1, 2, 8).get(0).getCourseId());
     }
 }
