@@ -45,6 +45,7 @@
                                     <div class="tagline" style="height: 100px;">
                                         <p class="card-subject">${requestScope.Courses.get(j-1).tagline}</p>
                                     </div>
+                                    
                                     <div class="progress" >
                                         <c:if test="${requestScope.courserates.get(j-1)==0 }">
                                         <span style="margin-top: 8px; font-size: 20px">Start</span> 
@@ -57,8 +58,9 @@
                                         
                                     </div>
                                     
-                                </div> 
+                                 </div> 
                             </div>
+                            
 
                         </div>
 

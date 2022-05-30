@@ -36,6 +36,10 @@
         <servlet-name>MyCourse</servlet-name>
         <servlet-class>controller.MyCourseController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyRegistrationsController</servlet-name>
+        <servlet-class>controller.MyRegistrationsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>MyCourse</servlet-name>
         <url-pattern>/MyCourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyRegistrationsController</servlet-name>
+        <url-pattern>/MyRegistrations</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
