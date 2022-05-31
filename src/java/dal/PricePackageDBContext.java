@@ -32,7 +32,7 @@ public class PricePackageDBContext extends DBContext {
                 + "	inner join Courses c\n"
                 + "	on c.CourseId=cp.courseid\n"
                 + "where c.CourseId=? and p.Status_id = 1"
-                +"ORDER BY p.sale_price asc";
+                + "ORDER BY p.sale_price asc";
         try {
             stm = connection.prepareStatement(sql);
             stm.setInt(1, CourseId);
@@ -68,11 +68,57 @@ public class PricePackageDBContext extends DBContext {
         return null;
     }
 
+    public PricePackage getPackage(int id) {
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        String sql = "SELECT  [id]\n"
+                + "      ,[duration]\n"
+                + "      ,[list_price]\n"
+                + "      ,[name]\n"
+                + "      ,[sale_price]\n"
+                + "      ,[Status_id]\n"
+                + "  FROM [Price_Package]\n"
+                + "  where id = ? and [Status_id] = 1";
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.executeQuery();
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                PricePackage PricePackage = new PricePackage();
+                PricePackage.setId(rs.getInt("id"));
+                PricePackage.setDuration(rs.getInt("duration"));
+                PricePackage.setListPrice(rs.getFloat("list_price"));
+                PricePackage.setName(rs.getString("name"));
+                PricePackage.setSalePrice(rs.getFloat("sale_price"));
+                return PricePackage;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PricePackageDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         PricePackageDBContext a = new PricePackageDBContext();
-        ArrayList<PricePackage> x = a.PricePackes(1);
-        for (PricePackage pricePackage : x) {
-            System.out.println(pricePackage.getId());
-        }
+        PricePackage x = a.getPackage(1);
+        
+            System.out.println(x.getName());
+        
     }
 }

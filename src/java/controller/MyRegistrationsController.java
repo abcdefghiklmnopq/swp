@@ -48,7 +48,7 @@ public class MyRegistrationsController extends HttpServlet {
          CategoryDBContext CDB = new CategoryDBContext();
         ArrayList<Category> Categorys = CDB.getCategorys();
         UserCourseDBContext ucdbc = new UserCourseDBContext();
-        ArrayList<UserCourse> myCourses= ucdbc.getCoursesRegistraion(2);
+        ArrayList<UserCourse> myCourses= ucdbc.getCoursesRegistraion(1);
         request.setAttribute("myCourses", myCourses);
         request.setAttribute("Categorys", Categorys);
         request.getRequestDispatcher("view/MyRegistrations.jsp").forward(request, response);

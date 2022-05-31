@@ -18,12 +18,12 @@
         <script src="https://kit.fontawesome.com/98df298cac.js" crossorigin="anonymous"></script>
         <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
         <jsp:include page="../view/base/header.jsp" /> 
-        <link href="css/courseDetail.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myRedistration.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <c:if test="${requestScope.myCourses.size()-1>0}">
              
-        <div class="row text-center content-detail">
+            <div class="row text-center content-Categorys" >
             <div class="col-lg-2 col-sm-12">
                 <h4 style="text-align: center; margin: 5%;">All Subject Category</h4>
                 <div class="scroll">
@@ -34,34 +34,34 @@
                     </c:forEach>
                 </div>
             </div>
-
+            
             <div class="col-lg-10 col-sm-12" >
-                <table border="1" style="width: 90%">
+                <table border="1" >
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>subject</th>
-                            <th>registration time</th>
-                            <th>package</th>
-                            <th>total cost</th>
-                            <th>Registraion status</th>
-                            <th>valid from</th>
-                            <th>valid to</th>
-                            <th>Edit</th>
+                            <th> &emsp;id &emsp;</th>
+                            <th> &emsp;subject &emsp;</th>
+                            <th> &emsp;Registration &emsp;<br>  &emsp;time &emsp;</th>
+                            <th> &emsp;package &emsp;</th>
+                            <th> &emsp;total cost &emsp;</th>
+                            <th> &emsp;Registration &emsp;<br> &emsp; status &emsp;</th>
+                            <th> &emsp;valid from &emsp;</th>
+                            <th> &emsp;valid to &emsp;</th>
+                            <th> &emsp;Edit &emsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var = "i" begin="0" end="${requestScope.myCourses.size()-1}">
                             <tr>
-                                <td>${requestScope.myCourses.get(i).userCourseId}</td>
-                                <td>${requestScope.myCourses.get(i).course.courseId}</td>
-                                <td>${requestScope.myCourses.get(i).pricePackage.id}</td>
-                                <td>${requestScope.myCourses.get(i).pricePackage.id}</td>
-                                <td>${requestScope.myCourses.get(i).pricePackage.id}</td>
-                                <td>${requestScope.myCourses.get(i).registration_status}</td>
-                                <td>${requestScope.myCourses.get(i).startDate}</td>
-                                <td>${requestScope.myCourses.get(i).endDate}</td>
-                                <td>
+                                <td >${requestScope.myCourses.get(i).userCourseId}</td>
+                                <td class="b">${requestScope.myCourses.get(i).course.title}</td>
+                                <td >${requestScope.myCourses.get(i).pricePackage.duration}</td>
+                                <td >${requestScope.myCourses.get(i).pricePackage.name}</td>
+                                <td >${requestScope.myCourses.get(i).pricePackage.salePrice}</td>
+                                <td >${requestScope.myCourses.get(i).registration_status}</td>
+                                <td >${requestScope.myCourses.get(i).startDate}</td>
+                                <td >${requestScope.myCourses.get(i).endDate}</td>
+                                <td >
                                     <c:if test="${!requestScope.myCourses.get(i).registration_status}">
                                         <a href="#" >Edit</a>
                                     </c:if>

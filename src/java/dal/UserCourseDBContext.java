@@ -43,14 +43,14 @@ public class UserCourseDBContext extends DBContext {
             while (rs.next()) {
                 UserCourse uc = new UserCourse();
                 uc.setUserCourseId(rs.getInt("usercourseId"));
-                Course Course = new Course();
-                Course.setCourseId(rs.getInt("Courseid"));
+                CourseDBContext cdbc = new CourseDBContext();
+                Course Course = cdbc.getCourseDetail(rs.getInt("Courseid"));
                 uc.setCourse(Course);
                 uc.setStartDate(rs.getDate("Startdate"));
                 uc.setEndDate(rs.getDate("enddate"));
                 uc.setRegistration_status(rs.getBoolean("registration_status"));
-                PricePackage pk = new PricePackage();
-                pk.setId(rs.getInt("price_packageid"));
+                PricePackageDBContext ppdbc = new PricePackageDBContext();
+                PricePackage pk = ppdbc.getPackage(rs.getInt("price_packageid"));
                 uc.setPricePackage(pk);
                 userCourses.add(uc);
             }
