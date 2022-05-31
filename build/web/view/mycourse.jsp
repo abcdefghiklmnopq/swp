@@ -36,7 +36,7 @@
                             <div class="card-infor">
                                 
                                 
-                                    <div class="card-img">
+                                    <div class="card-img" style="height:  100%;">
                                         <img src="images/courses/${requestScope.Courses.get(j-1).thumnailURL}" alt="">
                                     </div>
                                     <div class="card-title" style="height:  90px;">
